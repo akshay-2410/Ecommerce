@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from datetime import datetime
 from eshop_app.models import *
-
+from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 class Home(TemplateView):
     template_name = 'index.html'
     def get_context_data(self, **kwargs):
@@ -18,6 +19,19 @@ class Shop(TemplateView):
         context = super().get_context_data(**kwargs)
         context['categories']=Categories.objects.all()
         context['is_shop'] = True
+        context['products'] = Products.objects.all()
+
+        pagination = Paginator(context['products'], 3)
+        page_number = self.request.GET.get('page',1)
+        final = pagination.page(page_number)
+        try:
+            final = pagination.page(page_number)
+        except PageNotAnInteger:
+            final = pagination.page(1)  # If page_number is not an integer, show the first page
+        except EmptyPage:
+            final = pagination.page(pagination.num_pages) 
+        context['final'] = final
+
         return context
 
 

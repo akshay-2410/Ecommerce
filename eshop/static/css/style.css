@@ -4395,6 +4395,10 @@ input[type="button"].btn-block {
   border-top: 0;
 }
 
+.card-header img{
+  object-fit: cover;
+}
+
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
@@ -9546,7 +9550,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .cat-item .cat-img img,
-.product-item .product-img img {
+.zz-item .product-img img {
   transition: .5s;
 }
 
