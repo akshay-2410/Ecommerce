@@ -3,3 +3,4 @@ from eshop_app.models import *
 
 admin.site.register(Subcategories)
 admin.site.register(Categories)
+admin.site.register(Products)
